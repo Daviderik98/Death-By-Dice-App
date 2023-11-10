@@ -104,20 +104,27 @@ class DataController: ObservableObject{
     }
     
     
-    
-   
-    
-    
-    
-    func toDeletePlayer(player: Player){
-  
+    func deleteAllChallenges(player: Player){
         let userChallenges = retrieveChallengesByPlayer(player: player)
         
         for challenge in userChallenges{
             viewContext.delete(challenge)
         }
+        do{
+            try viewContext.save()
+        }catch{
+            print("Failed to Delete Challenges!!!")
+        }
+    }
+   
+    
+    
+    
+    func toDeletePlayer(activeplayer: Player){
+  
+        deleteAllChallenges(player: activeplayer)
         
-        viewContext.delete(player)
+        viewContext.delete(activeplayer)
         
        do{
            try viewContext.save()
