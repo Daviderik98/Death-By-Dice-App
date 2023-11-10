@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G526" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Player" representedClassName="Player" isAbstract="YES" syncable="YES">
+        <attribute name="passWord" optional="YES" attributeType="String"/>
+        <attribute name="playerID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="playerChallenges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserChallenge" inverseName="relationship" inverseEntity="UserChallenge"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="passWord"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="UserChallenge" representedClassName="UserChallenge" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="challengeDescription" optional="YES" attributeType="String"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="playerChallenges" inverseEntity="Player"/>
+    </entity>
+</model>
