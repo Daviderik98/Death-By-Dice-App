@@ -19,11 +19,12 @@ struct PlayerStatsView: View{
         let welcomingText: String = "Welcome \(playerName) with password \(playerPass)"
         VStack{
             Text(welcomingText)
-            //List{
-               // ForEach(playerActive?.playerChallenges){challengeOne in
-            //        Text(challengeOne.challengeDescription)
-            //    }
-           // }
+            let challengeCollection = controller.retrieveChallengesByPlayer(player: playerActive!)
+            List{
+                ForEach(challengeCollection){challengeOne in
+                    Text(challengeOne.challengeDescription ?? "Unknown")
+                }
+            }
         }
    }
 }

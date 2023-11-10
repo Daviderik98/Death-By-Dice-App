@@ -20,11 +20,18 @@ struct ChallengeView: View{
     @Binding var challenger: String
     @Binding var selectedCategory: Int
     
+    enum acceptance {
+        case onAccept
+        case offAccept
+    }
+    @State var toAccept = acceptance.offAccept
     
     @State var onDecline: Bool = false
+    
     @State var presentCh: Bool = false
     @State var denyOnce: Int = 0
     @State var showChallenge: String = ""
+    @State var highAlert: String = "You can no longer decline from more challenges"
     
     let SelectChallenges = ChallengePicker()
     @State var generator: Int = Int.random(in: 0...2)
@@ -67,23 +74,50 @@ struct ChallengeView: View{
                     Button(action: {
                         presentCh.toggle()
                         turnChallengeOn()
-                    }, label: {Text("Receive your challenge")})
+                    }, label: {Text("Ready for your challenge? Click here")})
                 }
                 else{
-                    Text(showChallenge)
+                    
+                        Text(showChallenge)
+                        
+                            Button(action: {
+                                if(toAccept == acceptance.offAccept){
+                                    dataControl.addChallenge(thisText: showChallenge, thisPlayer: activePlayer!)
+                                    toAccept = acceptance.onAccept
+                                }
+                                else{
+                                    highAlert = "You can only accept one challenge at a time"
+                                }
+                            }, label: {
+                                Text("Accept").position(x:geometry.size.width/3, y:geometry.size.height*0.6)
+                            })
+                            Button(action: {
+                                if(toAccept == acceptance.onAccept){
+                                    highAlert = "You cannot decline, because you have already accepted one challenge"
+                                }
+                                else{
+                                    
+                                    denyOnce += 1
+                                    if(denyOnce > 2){
+                                        onDecline.toggle()
+                                    }
+                                    else{
+                                        generator = Int.random(in: 0...2 )
+                                        turnChallengeOn()
+                                    }
+                                }
+                            }, label: {Text("Decline")}).position(x:geometry.size.width*0.7, y: geometry.size.height*0.6)
+                        
+                    
                 }
-                Button(action: {
-                    dataControl.addChallenge(thisText: showChallenge, thisPlayer: activePlayer!)
-                }, label: {
-                    Text("Accept").position(x:geometry.size.width/3, y:geometry.size.height*0.6)
-                })
+              
             
                 //Hstack Buttons
-                NavigationLink(destination: ShowplayersView(), label: {Text("Show all Players")}).position(x:geometry.size.height/2, y:geometry.size.height*4)
+                NavigationLink(destination: PlayerStatsView(), label: {Text("Click here to view all your challenges")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8)
                 //VStack ChallengeView
             } //ZStack ChallengeView
         }
-        //.alert(Text("You can no longer decline from more challenges"), isPresented: $onDecline, actions: {}) //Geometry Reader ChallengeView
+        .alert(Text(highAlert), isPresented: $onDecline, actions: {}) //Geometry Reader ChallengeView
         
         
     }
