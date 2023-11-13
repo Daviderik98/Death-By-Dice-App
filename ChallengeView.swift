@@ -78,7 +78,7 @@ struct ChallengeView: View{
                 }
                 else{
                     
-                        Text(showChallenge)
+                    Text(showChallenge).bold().foregroundColor(.orange).frame(width:geometry.size.width*0.8)
                         
                             Button(action: {
                                 if(toAccept == acceptance.offAccept){
@@ -89,8 +89,8 @@ struct ChallengeView: View{
                                     highAlert = "You can only accept one challenge at a time"
                                 }
                             }, label: {
-                                Text("Accept").position(x:geometry.size.width/3, y:geometry.size.height*0.6)
-                            })
+                                Text("Accept")
+                            }).bold().foregroundColor(.green).padding().background(.white).cornerRadius(6).position(x:geometry.size.width/3, y:geometry.size.height*0.6)
                             Button(action: {
                                 if(toAccept == acceptance.onAccept){
                                     highAlert = "You cannot decline, because you have already accepted one challenge"
@@ -106,7 +106,7 @@ struct ChallengeView: View{
                                         turnChallengeOn()
                                     }
                                 }
-                            }, label: {Text("Decline")}).position(x:geometry.size.width*0.7, y: geometry.size.height*0.6)
+                            }, label: {Text("Decline")}).bold().foregroundColor(.red).padding().background(.white).cornerRadius(6).position(x:geometry.size.width*0.7, y: geometry.size.height*0.6)
                         
                     
                 }

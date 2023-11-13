@@ -103,6 +103,12 @@ class DataController: ObservableObject{
         
     }
     
+    func deleteOneChallenge(userChallengeOne: UserChallenge){
+        viewContext.delete(userChallengeOne)
+        print("Attempted to delete your One Challenge")
+        toSaveData()
+    }
+    
     
     func deleteAllChallenges(player: Player){
         let userChallenges = retrieveChallengesByPlayer(player: player)
