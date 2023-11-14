@@ -27,32 +27,67 @@ struct ChallengeView: View{
     @State var toAccept = acceptance.offAccept
     
     @State var onDecline: Bool = false
-    
+    @State var toAnimate: Bool = false
     @State var presentCh: Bool = false
     @State var denyOnce: Int = 0
     @State var showChallenge: String = ""
+    @State var showPlus: String = ""
+    @State var showMinus: String = ""
+    
     @State var highAlert: String = "You can no longer decline from more challenges"
     
   //  let activePlayer = loggInModel.currentPlayer
   //  let activeName = activePlayer?.userName
     
     let SelectChallenges = ChallengePicker()
-    @State var generator: Int = Int.random(in: 0...4)
+    @State var generator: Int = Int.random(in: 0...7)
+    @State var backUp: Int = Int.random(in: 1...3)
+    
     
     func turnChallengeOn(){
         switch(selectedCategory){
         case 1:
             showChallenge = SelectChallenges.chRoutines[generator]
+            if(generator <= 2 || generator >= 7){
+                generator = 3
+            }
+            showPlus = SelectChallenges.chRoutines[generator + backUp]
+            showMinus = SelectChallenges.chRoutines[generator - backUp]
         case 2:
             showChallenge = SelectChallenges.chHonesty[generator]
+            if(generator <= 2 || generator >= 7){
+                generator = 3
+            }
+            showPlus = SelectChallenges.chHonesty[generator + backUp]
+            showMinus = SelectChallenges.chHonesty[generator - backUp]
         case 3:
             showChallenge = SelectChallenges.chWorkout[generator]
+            if(generator <= 2 || generator >= 7){
+                generator = 3
+            }
+            showPlus = SelectChallenges.chWorkout[generator + backUp]
+            showMinus = SelectChallenges.chWorkout[generator - backUp]
         case 4:
             showChallenge = SelectChallenges.chStayhealthy[generator]
+            if(generator <= 2 || generator >= 7){
+                generator = 3
+            }
+            showPlus = SelectChallenges.chStayhealthy[generator + backUp]
+            showMinus = SelectChallenges.chStayhealthy[generator - backUp]
         case 5:
             showChallenge = SelectChallenges.chEcofriendly[generator]
+            if(generator <= 2 || generator >= 7){
+               generator = 3
+            }
+            showPlus = SelectChallenges.chEcofriendly[generator + backUp]
+            showMinus = SelectChallenges.chEcofriendly[generator - backUp]
         case 6:
             showChallenge = SelectChallenges.chRandom[generator]
+            if(generator <= 2 || generator >= 7){
+                generator = 3
+            }
+            showPlus = SelectChallenges.chRandom[generator + backUp]
+            showMinus = SelectChallenges.chRandom[generator - backUp]
         default:
             showChallenge = "Error. There is no challenge for you right now"
         }
@@ -89,10 +124,11 @@ struct ChallengeView: View{
                                 Button(action: {
                                     if(toAccept == acceptance.offAccept){
                                         dataControl.addChallenge(thisText: showChallenge, thisPlayer: activePlayer)
+                                        showChallenge = "ACCEPTED! This challenge has been added to your player account"
                                         toAccept = acceptance.onAccept
                                     }
                                     else{
-                                        showChallenge = "ACCEPTED! This challenge has been added to your player account"
+                                        
                                         highAlert = "You can only accept one challenge at a time"
                                         onDecline = true
                                     }
@@ -114,8 +150,8 @@ struct ChallengeView: View{
                                             onDecline.toggle()
                                         }
                                         else{
-                                            generator = Int.random(in: 0...4 )
-                                            turnChallengeOn()
+                                            showChallenge = showPlus
+                                            showPlus = showMinus
                                         }
                                     }
                                 }, label: {Text("Decline")}).bold().foregroundColor(.red).padding().background(.white).cornerRadius(6).position(x:geometry.size.width*0.7, y: geometry.size.height*0.6)
