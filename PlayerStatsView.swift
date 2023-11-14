@@ -12,30 +12,38 @@ struct PlayerStatsView: View{
     @EnvironmentObject var controller: DataController
     @EnvironmentObject var loginModel: LoginViewModel
     
-    var body: some View{
-        let playerActive = loginModel.currentPlayer
-        let playerName = playerActive?.userName
-        let playerPass = playerActive?.passWord
-        let welcomingText: String = "Welcome \(playerName) with password \(playerPass)"
-        VStack{
-            Text(welcomingText)
-            let challengeCollection = controller.retrieveChallengesByPlayer(player: playerActive!)
-            List{
-                ForEach(challengeCollection){challengeOne in
-                    Text(challengeOne.challengeDescription ?? "Unknown")
-                }.onDelete(perform: toDeletion)
-            }
-            //Button(action: {}, label: {Image(systemName: "bin")})
-        }
-   }
     func toDeletion(at offsets: IndexSet){
-        let onePlayer = loginModel.currentPlayer
-        let allChallenges = controller.retrieveChallengesByPlayer(player: onePlayer!)
-        for offset in offsets{
-           let challengeX = allChallenges[offset]
-            controller.deleteOneChallenge(userChallengeOne: challengeX)
+        if let onePlayer = loginModel.currentPlayer {
+            let allChallenges = controller.retrieveChallengesByPlayer(player: onePlayer)
+            for offset in offsets{
+                let challengeX = allChallenges[offset]
+                controller.deleteOneChallenge(userChallengeOne: challengeX)
+            }
         }
     }
+    
+    var body: some View{
+        
+        if let activePlayer = loginModel.currentPlayer {
+            
+            VStack{
+                Text("Welcome \(activePlayer.userName ?? "No username") with password \(activePlayer.passWord ?? "No password")")
+
+                List{
+                    ForEach(controller.retrieveChallengesByPlayer(player: activePlayer)){challengeOne in
+                        Text(challengeOne.challengeDescription ?? "Unknown")
+                    }
+                    .onDelete(perform: toDeletion)
+                }
+            }
+        } else {
+            Text("No active player")
+        }
+   
+
+    }
+    
+
    
 }
 

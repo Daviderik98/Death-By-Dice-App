@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountView: View{
     
-    @Environment(\.managedObjectContext) var moc
+   // @Environment(\.managedObjectContext) var moc
     //@FetchRequest(sortDescriptors: []) var allPlayers: FetchedResults<Player>
     
     @State var accountName: String = ""

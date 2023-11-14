@@ -12,7 +12,7 @@ struct ShowplayersView: View{
     //@Environment(\.managedObjectContext) var managedContext
     
     @EnvironmentObject var dataControl: DataController
-    
+   
     func playerDeletion(at offsets: IndexSet){
         let playerMass = dataControl.retrieveAllUsers()
         for offset in offsets{
@@ -22,10 +22,8 @@ struct ShowplayersView: View{
     }
     
     var body: some View{
-        let allPlayers: [Player] = dataControl.retrieveAllUsers()
-                 // Text("AWAITING DB FOR ALL USERS")
         List{
-            ForEach(allPlayers){playerOne in
+            ForEach(dataControl.retrieveAllUsers()){playerOne in
                 VStack{
                     HStack{
                         Text(playerOne.userName ?? "Empty")

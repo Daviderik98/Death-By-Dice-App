@@ -13,14 +13,7 @@ class LoginViewModel: ObservableObject{
     @Published var usersPass: String = ""
     @Published var errorMessage: String = ""
     @Published var currentPlayer: Player?
-    let data_Controller = DataController()
-    
-    
-    
-   // func addOnePlayer(nameOne: String, nameTwo: String, viewCOntext: NSManagedObjectContext){
-     //   dataController.addPlayer(enterName: nameOne, enterPass: nameTwo, context: viewCOntext)
-   // }
-    
+ 
     init(){}
     
 

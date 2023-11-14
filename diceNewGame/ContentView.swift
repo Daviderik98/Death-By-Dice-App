@@ -57,7 +57,6 @@ struct ContentView: View{
                         
                         HStack{
                             Button( action:{
-                                
                                 if(enterName != "" && enterPass != ""){
                                     welcomeTxt = loginModel.findRightPlayerPrint(firstTxt: enterName, secondTxt: enterPass, controller: dataController)
                                 }
