@@ -23,7 +23,7 @@ struct AccountView: View{
     
     var body: some View{
             ZStack{
-                Color(CGColor(red: 50/255, green: 150/255, blue: 50/255, alpha: 1)).ignoresSafeArea()
+                Color(CGColor(red: 50/255, green: 110/255, blue: 50/255, alpha: 1)).ignoresSafeArea()
                 GeometryReader{ geometry in
                     
                         Text("Welcome new Player! Here is where you create your new account. Just fill in the fields and hit Save").font(.title2).frame(width:geometry.size.width*0.8).position(x:geometry.size.width/2, y:geometry.size.height/5)

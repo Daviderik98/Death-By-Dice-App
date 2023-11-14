@@ -113,7 +113,7 @@ struct ChallengeView: View{
               
             
                 //Hstack Buttons
-                NavigationLink(destination: PlayerStatsView(), label: {Text("Click here to view all your challenges")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8)
+                NavigationLink(destination: PlayerStatsView(), label: {Text("Click here to view all your challenges").foregroundColor(.indigo).padding().background(.cyan).cornerRadius(5)}).position(x:geometry.size.width/2, y:geometry.size.height*0.8)
                 //VStack ChallengeView
             } //ZStack ChallengeView
         }

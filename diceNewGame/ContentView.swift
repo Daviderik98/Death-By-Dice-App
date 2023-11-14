@@ -32,8 +32,8 @@ struct ContentView: View{
         NavigationView{
             GeometryReader{ geometry in
                 ZStack{
-                //Color(CGColor(red: 30/255, green: 79/255, blue: 85/255, alpha: 1)).ignoresSafeArea() Just wanted to save this color
-                Color(CGColor(red: 60/255, green: 70/255, blue: 100/255, alpha: 1)).ignoresSafeArea()
+                Color(CGColor(red: 30/255, green: 79/255, blue: 85/255, alpha: 1)).ignoresSafeArea() //Just wanted to save this color
+              //  Color(CGColor(red: 60/255, green: 70/255, blue: 100/255, alpha: 1)).ignoresSafeArea()
                 
                     VStack{
                         //Main Headline
