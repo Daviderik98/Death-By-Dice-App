@@ -13,7 +13,13 @@ struct ShowplayersView: View{
     
     @EnvironmentObject var dataControl: DataController
     
-    
+    func playerDeletion(at offsets: IndexSet){
+        let playerMass = dataControl.retrieveAllUsers()
+        for offset in offsets{
+            let playerX = playerMass[offset]
+            dataControl.toDeletePlayer(activeplayer: playerX)
+        }
+    }
     
     var body: some View{
         let allPlayers: [Player] = dataControl.retrieveAllUsers()
@@ -27,7 +33,7 @@ struct ShowplayersView: View{
                     }
                     
                 }
-            }
+            }.onDelete(perform: playerDeletion)
         }
                     
                 }

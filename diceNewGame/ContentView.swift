@@ -20,7 +20,7 @@ struct ContentView: View{
     @State var enterName: String = ""
     @State var enterPass: String = ""
     @State var welcomeTxt: String = ""
-    
+    @State var message = ""
    // func specificPlayer(nameOne: String, nameTwo: String){
     //}
     
@@ -46,9 +46,9 @@ struct ContentView: View{
                         
                  
                     VStack{
-                        if let message = loginModel.errorMessage{
+                      //  if let message = loginModel.errorMessage{
                             Text(message).foregroundColor(.red)
-                        }
+                      //  }
                             
                         TextField("username", text: $enterName).frame(width:geometry.size.width/1.5, height:geometry.size.height/20).background(.white)
                         SecureField("password", text: $enterPass).frame(width:geometry.size.width/1.5, height:geometry.size.height/20).background(.white).padding()
@@ -57,15 +57,18 @@ struct ContentView: View{
                         
                         HStack{
                             Button( action:{
-                                loginModel.onLoggingIn()
+                                
                                 if(enterName != "" && enterPass != ""){
                                     welcomeTxt = loginModel.findRightPlayerPrint(firstTxt: enterName, secondTxt: enterPass, controller: dataController)
+                                }
+                                else{
+                                    message = "Make sure you have filled in all fields"
                                 }
                                 //Insert more code : Search CoreData for Player with matching password, then log in
                             }, label: {
                                 Text("Enter name").frame(width:geometry.size.width/4, height:geometry.size.height/20).foregroundColor(.blue).background(.green).cornerRadius(5).padding()
                             })
-                        if(welcomeTxt != ""){
+                        if(welcomeTxt != "" && welcomeTxt != "User cannot be found. You must have typed incorrectly"){
                                 NavigationLink(destination: DicerollView(), label: {
                                     Text("Start Game").frame(width:geometry.size.width/3, height:geometry.size.height/20).background(.green).cornerRadius(5).padding()
                                 })

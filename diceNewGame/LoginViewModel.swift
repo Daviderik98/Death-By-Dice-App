@@ -23,15 +23,7 @@ class LoginViewModel: ObservableObject{
     
     init(){}
     
-    func onLoggingIn(){
-        
-        guard !usersName.trimmingCharacters(in: .whitespaces).isEmpty, !usersPass.trimmingCharacters(in: .whitespaces).isEmpty else{
-            
-            errorMessage = "You have to fill in all fields!"
-            return
-        }
-        
-    }
+
     
     
     
@@ -48,7 +40,8 @@ class LoginViewModel: ObservableObject{
                 self.currentPlayer = playerIn
                 break
             }else{
-                welcomingFull = ""
+                
+                welcomingFull = "User cannot be found. You must have typed incorrectly"
             }
             
         }

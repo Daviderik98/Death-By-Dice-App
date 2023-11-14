@@ -30,7 +30,7 @@ struct AccountView: View{
                     TextField("Username", text: $accountName).frame(width:geometry.size.width * 0.8, height: geometry.size.height/25).background(.white).position(x:geometry.size.width/2, y:geometry.size.height/2.5)
                     TextField("Password", text: $accountPass).frame(width:geometry.size.width * 0.8, height: geometry.size.height/25).background(.white).position(x:geometry.size.width/2, y:geometry.size.height/2)
                     
-                    Text(welcome_txt).foregroundColor(.pink)
+                    Text(welcome_txt).foregroundColor(.cyan).position(x:geometry.size.width/2, y:geometry.size.height/3)
                         
                         Button(action: {
                             let newPlayer = dataControl.addPlayer(enterName:accountName, enterPass: accountPass)
@@ -41,9 +41,8 @@ struct AccountView: View{
                             
                         }).position(x:geometry.size.width/2, y:geometry.size.height*0.68)
                         if(accountCreated == true){
-                            let loggedInPlayer =
                            
-                            NavigationLink(destination: DicerollView(), label: {Text("Start Playing")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8)
+                            NavigationLink(destination: DicerollView(), label: {Text("Start Playing").foregroundColor(.yellow).padding().background(.blue).cornerRadius(6)}).position(x:geometry.size.width/2, y:geometry.size.height*0.75).padding()
                     }
                     
                     

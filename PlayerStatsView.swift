@@ -23,10 +23,20 @@ struct PlayerStatsView: View{
             List{
                 ForEach(challengeCollection){challengeOne in
                     Text(challengeOne.challengeDescription ?? "Unknown")
-                }
+                }.onDelete(perform: toDeletion)
             }
+            //Button(action: {}, label: {Image(systemName: "bin")})
         }
    }
+    func toDeletion(at offsets: IndexSet){
+        let onePlayer = loginModel.currentPlayer
+        let allChallenges = controller.retrieveChallengesByPlayer(player: onePlayer!)
+        for offset in offsets{
+           let challengeX = allChallenges[offset]
+            controller.deleteOneChallenge(userChallengeOne: challengeX)
+        }
+    }
+   
 }
 
 struct PlayerStatsView_Previews: PreviewProvider {
