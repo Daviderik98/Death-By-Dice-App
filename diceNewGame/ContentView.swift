@@ -74,13 +74,13 @@ struct ContentView: View{
                             }
                             
                         }
-                        NavigationLink(destination: AccountView(), label: {Text("No account? Click here").frame(width:120, height:60).background(.yellow).cornerRadius(6)})
+                        NavigationLink(destination: AccountView(), label: {Text("No account? Click here").frame(width:geometry.size.width/3, height:geometry.size.height/15).background(.yellow).cornerRadius(6)})
                     
                         
                         
                     } //VStack 2nd Opening ContentView
                
-                    NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:210, y:750).font(.headline).foregroundColor(.cyan)
+                 //   NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:210, y:750).font(.headline).foregroundColor(.cyan)
             } //ZStack Opening COntentView
             } //GeometryReader ContentView
             

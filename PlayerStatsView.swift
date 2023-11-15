@@ -27,7 +27,7 @@ struct PlayerStatsView: View{
         if let activePlayer = loginModel.currentPlayer {
             
             VStack{
-                Text("Welcome \(activePlayer.userName ?? "No username") with password \(activePlayer.passWord ?? "No password")")
+                Text("Welcome \(activePlayer.userName ?? "No username")")
 
                 List{
                     ForEach(controller.retrieveChallengesByPlayer(player: activePlayer)){challengeOne in
