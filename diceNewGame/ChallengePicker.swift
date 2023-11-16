@@ -80,7 +80,8 @@ class ChallengePicker{
                               "Scream out Happy New Year in a crowd",
                               "Eat 3 full plates next time you´re invited to dinner",
                               "Eat a new type of food which you disliked when you were younger",
-                              "Sing out loud the next time you litsen to your favorite music"
+                              "Sing out loud the next time you litsen to your favorite music",
+                              ""
                               
     ]
 }

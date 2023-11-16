@@ -33,6 +33,7 @@ struct ChallengeView: View{
     @State var showChallenge: String = ""
     @State var showPlus: String = ""
     @State var showMinus: String = ""
+    @State var challengeMatch: Int = 0
     
     @State var highAlert: String = "You can no longer decline from more challenges"
     
@@ -123,8 +124,21 @@ struct ChallengeView: View{
                         
                                 Button(action: {
                                     if(toAccept == acceptance.offAccept){
-                                        dataControl.addChallenge(thisText: showChallenge, thisPlayer: activePlayer)
-                                        showChallenge = "ACCEPTED! This challenge has been added to your player account"
+                                        
+                                        let players_Challenges = dataControl.retrieveChallengesByPlayer(player: activePlayer)
+                                        for challenge_X in players_Challenges{
+                                            
+                                            if(showChallenge == challenge_X.challengeDescription){
+                                                challengeMatch += 1
+                                            }
+                                            
+                                          
+                                        }
+                                        if(challengeMatch > 0){
+                                            showChallenge = "You have accepted this challenge, but it already exists in among your current challenges."
+                                        }
+                                        else{ dataControl.addChallenge(thisText: showChallenge, thisPlayer: activePlayer)
+                                            showChallenge = "ACCEPTED! This challenge has been added to your player account"}
                                         toAccept = acceptance.onAccept
                                     }
                                     else{

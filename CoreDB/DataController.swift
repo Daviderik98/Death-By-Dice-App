@@ -62,6 +62,7 @@ class DataController: ObservableObject{
         
         newChallenge.relationship = thisPlayer
         
+       
         toSaveData()
         
         

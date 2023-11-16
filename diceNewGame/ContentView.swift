@@ -35,14 +35,14 @@ struct ContentView: View{
                 Color(CGColor(red: 30/255, green: 79/255, blue: 85/255, alpha: 1)).ignoresSafeArea() //Just wanted to save this color
               //  Color(CGColor(red: 60/255, green: 70/255, blue: 100/255, alpha: 1)).ignoresSafeArea()
                 
-                    VStack{
+                    
                         //Main Headline
                         Image(systemName: "dice")
                             .imageScale(.large)
-                            .foregroundColor(.red)
-                        Text("Death by Dice: The Game").position(x:geometry.size.width / 2, y:geometry.size.height / 35).font(.title).bold().foregroundColor(.brown)
-                    }
-                    Text("Welcome to Death By Dice. All you have to do to start playing is sign in to your account").position(x:geometry.size.width/3,y:geometry.size.height/6).font(.title3).fontWeight(.medium).foregroundColor(.white).frame(width:geometry.size.width*0.7)
+                            .foregroundColor(.red).position(x:geometry.size.width/2, y:geometry.size.height/11)
+                        Text("Death by Dice: The Game").position(x:geometry.size.width / 2, y:geometry.size.height / 30).font(.title).bold().foregroundColor(.brown)
+                    
+                    Text("Welcome to Death By Dice. All you have to do to start playing is sign in to your account").position(x:geometry.size.width/3,y:geometry.size.height/5).font(.title3).fontWeight(.medium).foregroundColor(.white).frame(width:geometry.size.width*0.7)
                         
                  
                     VStack{
@@ -80,7 +80,8 @@ struct ContentView: View{
                         
                     } //VStack 2nd Opening ContentView
                
-                 //   NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:210, y:750).font(.headline).foregroundColor(.cyan)
+                    //The NavigationLink below is not part of the app, I only used it to make sure that Core Data saved Players correctly
+                    NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8).font(.headline).foregroundColor(.cyan)
             } //ZStack Opening COntentView
             } //GeometryReader ContentView
             
