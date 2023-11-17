@@ -81,7 +81,7 @@ struct ContentView: View{
                     } //VStack 2nd Opening ContentView
                
                     //The NavigationLink below is not part of the app, I only used it to make sure that Core Data saved Players correctly
-                    NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8).font(.headline).foregroundColor(.cyan)
+                   // NavigationLink(destination: ShowplayersView(), label: {Text("Show alla ccounts")}).position(x:geometry.size.width/2, y:geometry.size.height*0.8).font(.headline).foregroundColor(.cyan)
             } //ZStack Opening COntentView
             } //GeometryReader ContentView
             
